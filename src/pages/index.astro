@@ -1,0 +1,18 @@
+---
+import BaseLayouts from '../layouts/BaseLayouts.astro';
+const allPost = Object.values(import.meta.glob('./posts/*.md', { eager: true }))
+---
+<BaseLayouts>
+		<main class="max-w-2xl mx-auto m-4">
+			<div class="bg-purple-100 p-6 rounded-lg shadow-md">
+				<p class="text" >Este manual esta creado con el objetivo de dejar como evidencia el aprendizaje para la construccion de un sitio web de manera estatico y multipagina. Su finalidas es proporcionar una guía sobre el proceso de instalacion, configuraciones, el desarrollo de paginas web utilizando Astro, tambien estilos en tailwind CSS y utilizando un poco del CSS tradicional </p>
+                <p> Tambien se proporcionara en este manual los conceptos fundamentales de cada paso a desarrollar, en el proceso vamos a utilizar buenas practicas de organizacion, reutilizacion de cogio y diseño responsivo para que se adapte a cualquier dispositivo. </p>
+			</div>		
+		</main>
+		{allPost.map((post: any) => (
+    <a href={post.url} class="block m-4 bg-[#cf9df1] p-4 rounded-3xl border-8 border-dotted border-[#7B609a] hover:opacity-80">
+      	<h2 class="text-2xl font-bold">{post.frontmatter.title}</h2>
+      	<p>{post.frontmatter.description}</p>
+    </a>
+  	))}
+</BaseLayouts>
